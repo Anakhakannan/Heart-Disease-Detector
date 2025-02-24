@@ -1,11 +1,12 @@
 import streamlit as st
 import pickle
 import numpy as np
+import os.path as path
 
 # Load the trained model
-model_path = 'models/rf_model.pkl'
-with open(model_path, 'rb') as file:
-    model = pickle.load(file)
+file_name = "rf_model.pkl"
+with open(path.join("model", file_name), 'rb') as file:
+    rf_model = pickle.load(file)
 
 # Title of the app
 st.set_page_config(
@@ -48,7 +49,7 @@ with col3:
 # Prediction
 if st.button('Detect Heart Disease'):
     features = np.array([[age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]])
-    prediction = model.predict(features)
+    prediction = rf_model.predict(features)
     if prediction[0] == 1:
         st.write('The person has Detected heart disease.')
     else:
