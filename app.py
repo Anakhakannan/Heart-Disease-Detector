@@ -32,7 +32,7 @@ st.markdown(
 )
 
 # Load the trained model
-model_path = 'models/rf_model.pkl'
+model_path = 'rf_model.pkl'
 if not path.exists(model_path):
     st.error(f"Model file not found at {model_path}")
     logging.error(f"Model file not found at {model_path}")
